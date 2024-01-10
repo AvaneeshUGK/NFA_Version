@@ -1,0 +1,12 @@
+COLUMN TABLE Version_idTab (
+  event_id NVARCHAR(5000) NOT NULL,
+  Srcevtname NVARCHAR(5000),
+  Createdby NVARCHAR(50),
+  Desc NVARCHAR(100),
+  Version NVARCHAR(10),
+  status NVARCHAR(100),
+  criticality INTEGER,
+  PRIMARY KEY(event_id)
+) WITH ASSOCIATIONS (
+  MANY TO MANY JOIN Version_Evt AS verLink ON (event_id = verLink.event_id)
+)

@@ -1,0 +1,5 @@
+VIEW VersionService_Version AS SELECT
+  Version_0.Version,
+  Version_0.Guruprasad,
+  Version_0.Supplier_Demo2
+FROM Version_Version AS Version_0

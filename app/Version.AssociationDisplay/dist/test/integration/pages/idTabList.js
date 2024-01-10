@@ -1,0 +1,2 @@
+sap.ui.define(["sap/fe/test/ListReport"],function(t){"use strict";var i={actions:{},assertions:{}};return new t({appId:"Version.AssociationDisplay",componentId:"idTabList",entitySet:"idTab"},i)});
+//# sourceMappingURL=idTabList.js.map

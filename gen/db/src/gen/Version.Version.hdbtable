@@ -1,0 +1,5 @@
+COLUMN TABLE Version_Version (
+  Version NVARCHAR(100),
+  Guruprasad DECIMAL(8, 2),
+  Supplier_Demo2 DECIMAL(8, 2)
+)

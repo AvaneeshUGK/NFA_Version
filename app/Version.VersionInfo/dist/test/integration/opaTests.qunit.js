@@ -1,0 +1,2 @@
+sap.ui.require(["sap/fe/test/JourneyRunner","Version/VersionInfo/test/integration/FirstJourney","Version/VersionInfo/test/integration/pages/VersionInfoList","Version/VersionInfo/test/integration/pages/VersionInfoObjectPage"],function(e,n,o,r){"use strict";var e=new e({launchUrl:sap.ui.require.toUrl("Version/VersionInfo")+"/index.html"});e.run({pages:{onTheVersionInfoList:o,onTheVersionInfoObjectPage:r}},n.run)});
+//# sourceMappingURL=opaTests.qunit.js.map

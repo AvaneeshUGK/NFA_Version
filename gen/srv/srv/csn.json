@@ -1,0 +1,1084 @@
+{
+  "namespace": "Version",
+  "definitions": {
+    "Version.Version": {
+      "kind": "entity",
+      "elements": {
+        "Version": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "Guruprasad": {
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 2
+        },
+        "Supplier_Demo2": {
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 2
+        }
+      }
+    },
+    "Version.VersionInfo": {
+      "kind": "entity",
+      "elements": {
+        "event_id": {
+          "key": true,
+          "type": "cds.String"
+        },
+        "VersionInf": {
+          "type": "Version.Ver"
+        }
+      }
+    },
+    "Version.Ver": {
+      "kind": "type",
+      "elements": {}
+    },
+    "Version.Evt": {
+      "kind": "entity",
+      "elements": {
+        "event_id": {
+          "type": "cds.String"
+        },
+        "Version": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "Guruprasad": {
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 2
+        },
+        "Supplier_Demo2": {
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 2
+        },
+        "idTab": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": 1
+          },
+          "target": "Version.idTab",
+          "on": [
+            {
+              "ref": [
+                "idTab",
+                "event_id"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "event_id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "Version.idTab": {
+      "kind": "entity",
+      "elements": {
+        "event_id": {
+          "key": true,
+          "type": "cds.String"
+        },
+        "Srcevtname": {
+          "type": "cds.String"
+        },
+        "Createdby": {
+          "type": "cds.String",
+          "length": 50
+        },
+        "Desc": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "Version": {
+          "type": "cds.String",
+          "length": 10
+        },
+        "status": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "criticality": {
+          "type": "cds.Integer"
+        },
+        "verLink": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "Version.Evt",
+          "on": [
+            {
+              "ref": [
+                "verLink",
+                "idTab"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "VersionService": {
+      "@source": "srv/service.cds",
+      "kind": "service",
+      "@path": "/service/Version"
+    },
+    "VersionService.Version": {
+      "kind": "entity",
+      "@readonly": true,
+      "@UI.LineItem": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Version"
+          },
+          "Label": "Version"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Supplier_Demo2"
+          },
+          "Label": "Supplier_Demo2"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Guruprasad"
+          },
+          "Label": "Guruprasad"
+        }
+      ],
+      "@UI.Facets": [
+        {
+          "$Type": "UI.ReferenceFacet",
+          "Label": "Version inforation",
+          "ID": "Versioninforation",
+          "Target": "@UI.FieldGroup#Versioninforation"
+        }
+      ],
+      "@UI.FieldGroup#Versioninforation.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#Versioninforation.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Guruprasad"
+          },
+          "Label": "Guruprasad"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Supplier_Demo2"
+          },
+          "Label": "Supplier_Demo2"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Version"
+          },
+          "Label": "Version"
+        }
+      ],
+      "projection": {
+        "from": {
+          "ref": [
+            "Version.Version"
+          ]
+        }
+      },
+      "elements": {
+        "Version": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "Guruprasad": {
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 2
+        },
+        "Supplier_Demo2": {
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 2
+        }
+      }
+    },
+    "VersionService.VersionInfo": {
+      "kind": "entity",
+      "@UI.LineItem": [
+        {
+          "$Type": "UI.DataField",
+          "Label": "event_id",
+          "Value": {
+            "=": "event_id"
+          }
+        }
+      ],
+      "@UI.FieldGroup#GeneratedGroup1.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#GeneratedGroup1.Data": [],
+      "@UI.Facets": [
+        {
+          "$Type": "UI.ReferenceFacet",
+          "ID": "GeneratedFacet1",
+          "Label": "General Information",
+          "Target": "@UI.FieldGroup#GeneratedGroup1"
+        }
+      ],
+      "projection": {
+        "from": {
+          "ref": [
+            "Version.VersionInfo"
+          ]
+        }
+      },
+      "elements": {
+        "event_id": {
+          "key": true,
+          "type": "cds.String"
+        },
+        "VersionInf": {
+          "type": "Version.Ver"
+        }
+      }
+    },
+    "VersionService.idTab": {
+      "kind": "entity",
+      "@readonly": true,
+      "@UI.LineItem": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Createdby"
+          },
+          "Label": "Createdby"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Desc"
+          },
+          "Label": "Desc"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Srcevtname"
+          },
+          "Label": "Srcevtname"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "status"
+          },
+          "Label": "status"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Version"
+          },
+          "Label": "Version"
+        }
+      ],
+      "@UI.FieldGroup#GeneratedGroup1.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#GeneratedGroup1.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Label": "event_id",
+          "Value": {
+            "=": "event_id"
+          }
+        }
+      ],
+      "@UI.Facets": [
+        {
+          "$Type": "UI.ReferenceFacet",
+          "Label": "Version",
+          "ID": "VersionInfo",
+          "Target": "verLink/@UI.LineItem#VersionInfo"
+        }
+      ],
+      "@Common.SemanticKey": [
+        {
+          "=": "event_id"
+        }
+      ],
+      "@UI.FieldGroup#Ver.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#Ver.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "verLink.Guruprasad"
+          },
+          "Label": "Guruprasad"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "verLink.Supplier_Demo2"
+          },
+          "Label": "Supplier_Demo2"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "verLink.Version"
+          },
+          "Label": "Version"
+        }
+      ],
+      "@UI.HeaderFacets": [
+        {
+          "$Type": "UI.ReferenceFacet",
+          "Label": "Vendor Price Comparison",
+          "ID": "ProjectDetails",
+          "Target": "@UI.FieldGroup#ProjectDetails"
+        }
+      ],
+      "@UI.FieldGroup#ProjectDetails.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#ProjectDetails.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Srcevtname"
+          },
+          "Label": "Source Event Name"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Desc"
+          },
+          "Label": "Description"
+        }
+      ],
+      "projection": {
+        "from": {
+          "ref": [
+            "Version.idTab"
+          ]
+        }
+      },
+      "elements": {
+        "event_id": {
+          "key": true,
+          "type": "cds.String"
+        },
+        "Srcevtname": {
+          "type": "cds.String"
+        },
+        "Createdby": {
+          "type": "cds.String",
+          "length": 50
+        },
+        "Desc": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "Version": {
+          "type": "cds.String",
+          "length": 10
+        },
+        "status": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "criticality": {
+          "type": "cds.Integer"
+        },
+        "verLink": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "VersionService.Evt",
+          "on": [
+            {
+              "ref": [
+                "verLink",
+                "idTab"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "VersionService.Evt": {
+      "kind": "entity",
+      "@readonly": true,
+      "@UI.LineItem#VersionInfo": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Version"
+          },
+          "Label": "Version"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Guruprasad"
+          },
+          "Label": "Guruprasad"
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "Supplier_Demo2"
+          },
+          "Label": "Supplier_Demo2"
+        }
+      ],
+      "projection": {
+        "from": {
+          "ref": [
+            "Version.Evt"
+          ]
+        }
+      },
+      "elements": {
+        "event_id": {
+          "type": "cds.String"
+        },
+        "Version": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "Guruprasad": {
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 2
+        },
+        "Supplier_Demo2": {
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 2
+        },
+        "idTab": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": 1
+          },
+          "target": "VersionService.idTab",
+          "on": [
+            {
+              "ref": [
+                "idTab",
+                "event_id"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "event_id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "Language": {
+      "kind": "type",
+      "@title": "{i18n>Language}",
+      "@description": "{i18n>LanguageCode.Description}",
+      "type": "cds.Association",
+      "target": "sap.common.Languages",
+      "keys": [
+        {
+          "ref": [
+            "code"
+          ]
+        }
+      ]
+    },
+    "Currency": {
+      "kind": "type",
+      "@title": "{i18n>Currency}",
+      "@description": "{i18n>CurrencyCode.Description}",
+      "type": "cds.Association",
+      "target": "sap.common.Currencies",
+      "keys": [
+        {
+          "ref": [
+            "code"
+          ]
+        }
+      ]
+    },
+    "Country": {
+      "kind": "type",
+      "@title": "{i18n>Country}",
+      "@description": "{i18n>CountryCode.Description}",
+      "type": "cds.Association",
+      "target": "sap.common.Countries",
+      "keys": [
+        {
+          "ref": [
+            "code"
+          ]
+        }
+      ]
+    },
+    "sap.common": {
+      "kind": "context"
+    },
+    "sap.common.Locale": {
+      "kind": "type",
+      "@title": "{i18n>LanguageCode}",
+      "type": "cds.String",
+      "length": 14
+    },
+    "sap.common.Languages": {
+      "kind": "entity",
+      "@cds.autoexpose": true,
+      "@cds.persistence.skip": "if-unused",
+      "@UI.Identification": [
+        {
+          "Value": {
+            "=": "name"
+          }
+        }
+      ],
+      "@cds.odata.valuelist": true,
+      "includes": [
+        "sap.common.CodeList"
+      ],
+      "elements": {
+        "name": {
+          "@title": "{i18n>Name}",
+          "localized": true,
+          "type": "cds.String",
+          "length": 255
+        },
+        "descr": {
+          "@title": "{i18n>Description}",
+          "localized": true,
+          "type": "cds.String",
+          "length": 1000
+        },
+        "code": {
+          "@Common.Text": {
+            "=": "name"
+          },
+          "@title": "{i18n>LanguageCode}",
+          "key": true,
+          "type": "sap.common.Locale",
+          "length": 14
+        },
+        "texts": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "sap.common.Languages.texts",
+          "on": [
+            {
+              "ref": [
+                "texts",
+                "code"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "code"
+              ]
+            }
+          ]
+        },
+        "localized": {
+          "type": "cds.Association",
+          "target": "sap.common.Languages.texts",
+          "on": [
+            {
+              "ref": [
+                "localized",
+                "code"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "code"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "localized",
+                "locale"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$user",
+                "locale"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "sap.common.Countries": {
+      "kind": "entity",
+      "@cds.autoexpose": true,
+      "@cds.persistence.skip": "if-unused",
+      "@UI.Identification": [
+        {
+          "Value": {
+            "=": "name"
+          }
+        }
+      ],
+      "@cds.odata.valuelist": true,
+      "includes": [
+        "sap.common.CodeList"
+      ],
+      "elements": {
+        "name": {
+          "@title": "{i18n>Name}",
+          "localized": true,
+          "type": "cds.String",
+          "length": 255
+        },
+        "descr": {
+          "@title": "{i18n>Description}",
+          "localized": true,
+          "type": "cds.String",
+          "length": 1000
+        },
+        "code": {
+          "@title": "{i18n>CountryCode}",
+          "@Common.Text": {
+            "=": "name"
+          },
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "texts": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "sap.common.Countries.texts",
+          "on": [
+            {
+              "ref": [
+                "texts",
+                "code"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "code"
+              ]
+            }
+          ]
+        },
+        "localized": {
+          "type": "cds.Association",
+          "target": "sap.common.Countries.texts",
+          "on": [
+            {
+              "ref": [
+                "localized",
+                "code"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "code"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "localized",
+                "locale"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$user",
+                "locale"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "sap.common.Currencies": {
+      "kind": "entity",
+      "@cds.autoexpose": true,
+      "@cds.persistence.skip": "if-unused",
+      "@UI.Identification": [
+        {
+          "Value": {
+            "=": "name"
+          }
+        }
+      ],
+      "@cds.odata.valuelist": true,
+      "includes": [
+        "sap.common.CodeList"
+      ],
+      "elements": {
+        "name": {
+          "@title": "{i18n>Name}",
+          "localized": true,
+          "type": "cds.String",
+          "length": 255
+        },
+        "descr": {
+          "@title": "{i18n>Description}",
+          "localized": true,
+          "type": "cds.String",
+          "length": 1000
+        },
+        "code": {
+          "@title": "{i18n>CurrencyCode}",
+          "@Common.Text": {
+            "=": "name"
+          },
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "symbol": {
+          "@title": "{i18n>CurrencySymbol}",
+          "type": "cds.String",
+          "length": 5
+        },
+        "minorUnit": {
+          "@title": "{i18n>CurrencyMinorUnit}",
+          "type": "cds.Int16"
+        },
+        "texts": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "sap.common.Currencies.texts",
+          "on": [
+            {
+              "ref": [
+                "texts",
+                "code"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "code"
+              ]
+            }
+          ]
+        },
+        "localized": {
+          "type": "cds.Association",
+          "target": "sap.common.Currencies.texts",
+          "on": [
+            {
+              "ref": [
+                "localized",
+                "code"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "code"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "localized",
+                "locale"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$user",
+                "locale"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "sap.common.CodeList": {
+      "kind": "aspect",
+      "@cds.autoexpose": true,
+      "@cds.persistence.skip": "if-unused",
+      "@UI.Identification": [
+        {
+          "Value": {
+            "=": "name"
+          }
+        }
+      ],
+      "@cds.odata.valuelist": true,
+      "elements": {
+        "name": {
+          "@title": "{i18n>Name}",
+          "localized": true,
+          "type": "cds.String",
+          "length": 255
+        },
+        "descr": {
+          "@title": "{i18n>Description}",
+          "localized": true,
+          "type": "cds.String",
+          "length": 1000
+        }
+      }
+    },
+    "sap.common.TextsAspect": {
+      "kind": "aspect",
+      "elements": {
+        "locale": {
+          "@title": "{i18n>LanguageCode}",
+          "key": true,
+          "type": "sap.common.Locale",
+          "length": 14
+        }
+      }
+    },
+    "cuid": {
+      "kind": "aspect",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        }
+      }
+    },
+    "managed": {
+      "kind": "aspect",
+      "elements": {
+        "createdAt": {
+          "@cds.on.insert": {
+            "=": "$now"
+          },
+          "@UI.HiddenFilter": true,
+          "@Core.Immutable": true,
+          "@title": "{i18n>CreatedAt}",
+          "@readonly": true,
+          "type": "cds.Timestamp"
+        },
+        "createdBy": {
+          "@cds.on.insert": {
+            "=": "$user"
+          },
+          "@UI.HiddenFilter": true,
+          "@Core.Immutable": true,
+          "@title": "{i18n>CreatedBy}",
+          "@readonly": true,
+          "@description": "{i18n>UserID.Description}",
+          "type": "User",
+          "length": 255
+        },
+        "modifiedAt": {
+          "@cds.on.insert": {
+            "=": "$now"
+          },
+          "@cds.on.update": {
+            "=": "$now"
+          },
+          "@UI.HiddenFilter": true,
+          "@title": "{i18n>ChangedAt}",
+          "@readonly": true,
+          "type": "cds.Timestamp"
+        },
+        "modifiedBy": {
+          "@cds.on.insert": {
+            "=": "$user"
+          },
+          "@cds.on.update": {
+            "=": "$user"
+          },
+          "@UI.HiddenFilter": true,
+          "@title": "{i18n>ChangedBy}",
+          "@readonly": true,
+          "@description": "{i18n>UserID.Description}",
+          "type": "User",
+          "length": 255
+        }
+      }
+    },
+    "temporal": {
+      "kind": "aspect",
+      "elements": {
+        "validFrom": {
+          "@cds.valid.from": true,
+          "type": "cds.Timestamp"
+        },
+        "validTo": {
+          "@cds.valid.to": true,
+          "type": "cds.Timestamp"
+        }
+      }
+    },
+    "User": {
+      "kind": "type",
+      "@title": "{i18n>UserID}",
+      "@description": "{i18n>UserID.Description}",
+      "type": "cds.String",
+      "length": 255
+    },
+    "extensible": {
+      "kind": "aspect",
+      "elements": {
+        "extensions__": {
+          "@cds.api.ignore": true,
+          "type": "cds.String"
+        }
+      }
+    },
+    "sap.common.Languages.texts": {
+      "kind": "entity",
+      "@odata.draft.enabled": false,
+      "includes": [
+        "sap.common.TextsAspect"
+      ],
+      "elements": {
+        "locale": {
+          "@title": "{i18n>LanguageCode}",
+          "key": true,
+          "type": "sap.common.Locale",
+          "length": 14
+        },
+        "name": {
+          "@title": "{i18n>Name}",
+          "localized": null,
+          "type": "cds.String",
+          "length": 255
+        },
+        "descr": {
+          "@title": "{i18n>Description}",
+          "localized": null,
+          "type": "cds.String",
+          "length": 1000
+        },
+        "code": {
+          "@odata.containment.ignore": true,
+          "@Common.Text": {
+            "=": "name"
+          },
+          "@title": "{i18n>LanguageCode}",
+          "key": true,
+          "type": "sap.common.Locale",
+          "length": 14
+        }
+      }
+    },
+    "sap.common.Countries.texts": {
+      "kind": "entity",
+      "@odata.draft.enabled": false,
+      "includes": [
+        "sap.common.TextsAspect"
+      ],
+      "elements": {
+        "locale": {
+          "@title": "{i18n>LanguageCode}",
+          "key": true,
+          "type": "sap.common.Locale",
+          "length": 14
+        },
+        "name": {
+          "@title": "{i18n>Name}",
+          "localized": null,
+          "type": "cds.String",
+          "length": 255
+        },
+        "descr": {
+          "@title": "{i18n>Description}",
+          "localized": null,
+          "type": "cds.String",
+          "length": 1000
+        },
+        "code": {
+          "@odata.containment.ignore": true,
+          "@title": "{i18n>CountryCode}",
+          "@Common.Text": {
+            "=": "name"
+          },
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        }
+      }
+    },
+    "sap.common.Currencies.texts": {
+      "kind": "entity",
+      "@odata.draft.enabled": false,
+      "includes": [
+        "sap.common.TextsAspect"
+      ],
+      "elements": {
+        "locale": {
+          "@title": "{i18n>LanguageCode}",
+          "key": true,
+          "type": "sap.common.Locale",
+          "length": 14
+        },
+        "name": {
+          "@title": "{i18n>Name}",
+          "localized": null,
+          "type": "cds.String",
+          "length": 255
+        },
+        "descr": {
+          "@title": "{i18n>Description}",
+          "localized": null,
+          "type": "cds.String",
+          "length": 1000
+        },
+        "code": {
+          "@odata.containment.ignore": true,
+          "@title": "{i18n>CurrencyCode}",
+          "@Common.Text": {
+            "=": "name"
+          },
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        }
+      }
+    }
+  },
+  "meta": {
+    "creator": "CDS Compiler v4.1.2",
+    "flavor": "inferred"
+  },
+  "$version": "2.0"
+}

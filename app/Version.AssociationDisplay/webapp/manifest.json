@@ -1,0 +1,204 @@
+{
+    "_version": "1.48.0",
+    "sap.app": {
+        "id": "Version.AssociationDisplay",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.10.6",
+            "toolsId": "60810094-20fa-49a7-97e7-e835947cf6ee"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "service/Version/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "VersionAssociationDisplay-display": {
+                    "semanticObject": "VersionAssociationDisplay",
+                    "action": "display",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "signature": {
+                        "parameters": {
+                            "event_id": {
+                                "required": true
+                            }
+                        },
+                        "additionalParameters": "allowed"
+                    }
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.108.7",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "Version.AssociationDisplay.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": [{
+                "uri": "css/styles.css"
+            }]
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "idTabList",
+                    "target": "idTabList"
+                },
+                {
+                    "pattern": "idTab({key}):?query:",
+                    "name": "idTabObjectPage",
+                    "target": "idTabObjectPage"
+                },
+                {
+                    "pattern": "idTab({key})/verLink({key2}):?query:",
+                    "name": "EvtObjectPage",
+                    "target": "EvtObjectPage"
+                }
+            ],
+            "targets": {
+                "idTabList": {
+                    "type": "Component",
+                    "id": "idTabList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "idTab",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "idTab": {
+                                    "detail": {
+                                        "route": "idTabObjectPage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "idTabObjectPage": {
+                    "type": "Component",
+                    "id": "idTabObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "idTab",
+                            "navigation": {
+                                "verLink": {
+                                    "detail": {
+                                        "route": "EvtObjectPage"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "verLink/@com.sap.vocabularies.UI.v1.LineItem#VersionInfo": {
+                                    "columns": {
+                                        "DataField::Guruprasad": {
+                                            "width": "33.33%"
+                                        },
+                                        "DataField::Supplier_Demo2": {
+                                            "width": "33.33%"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "EvtObjectPage": {
+                    "type": "Component",
+                    "id": "EvtObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "Evt"
+                        }
+                    }
+                }
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ObjectPage.ObjectPageController#Version.AssociationDisplay::idTabObjectPage": {
+                        "controllerName": "Version.AssociationDisplay.ext.controller.Version"
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "lcap.Version"
+    }
+}

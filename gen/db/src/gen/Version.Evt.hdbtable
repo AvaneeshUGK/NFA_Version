@@ -1,0 +1,8 @@
+COLUMN TABLE Version_Evt (
+  event_id NVARCHAR(5000),
+  Version NVARCHAR(100),
+  Guruprasad DECIMAL(8, 2),
+  Supplier_Demo2 DECIMAL(8, 2)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN Version_idTab AS idTab ON (idTab.event_id = event_id)
+)

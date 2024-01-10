@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="VersionService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Version" EntityType="VersionService.Version"/>
+                <EntitySet Name="VersionInfo" EntityType="VersionService.VersionInfo"/>
+                <EntitySet Name="idTab" EntityType="VersionService.idTab">
+                    <NavigationPropertyBinding Path="verLink" Target="Evt"/>
+                </EntitySet>
+                <EntitySet Name="Evt" EntityType="VersionService.Evt">
+                    <NavigationPropertyBinding Path="idTab" Target="idTab"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="Version">
+                <Property Name="Version" Type="Edm.String" MaxLength="100"/>
+                <Property Name="Guruprasad" Type="Edm.Decimal" Scale="2" Precision="8"/>
+                <Property Name="Supplier_Demo2" Type="Edm.Decimal" Scale="2" Precision="8"/>
+            </EntityType>
+            <EntityType Name="VersionInfo">
+                <Key>
+                    <PropertyRef Name="event_id"/>
+                </Key>
+                <Property Name="event_id" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="idTab">
+                <Key>
+                    <PropertyRef Name="event_id"/>
+                </Key>
+                <Property Name="event_id" Type="Edm.String" Nullable="false"/>
+                <NavigationProperty Name="verLink" Type="Collection(VersionService.Evt)" Partner="idTab"/>
+            </EntityType>
+            <EntityType Name="Evt">
+                <Property Name="event_id" Type="Edm.String"/>
+                <Property Name="Version" Type="Edm.String" MaxLength="100"/>
+                <Property Name="Guruprasad" Type="Edm.Decimal" Scale="2" Precision="8"/>
+                <Property Name="Supplier_Demo2" Type="Edm.Decimal" Scale="2" Precision="8"/>
+                <NavigationProperty Name="idTab" Type="VersionService.idTab" Partner="verLink">
+                    <ReferentialConstraint Property="idTab_event_id" ReferencedProperty="event_id"/>
+                </NavigationProperty>
+                <Property Name="idTab_event_id" Type="Edm.String"/>
+            </EntityType>
+            <Annotations Target="VersionService.EntityContainer/Version">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

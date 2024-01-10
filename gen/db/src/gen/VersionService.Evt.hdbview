@@ -1,0 +1,9 @@
+VIEW VersionService_Evt AS SELECT
+  Evt_0.event_id,
+  Evt_0.Version,
+  Evt_0.Guruprasad,
+  Evt_0.Supplier_Demo2
+FROM Version_Evt AS Evt_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN VersionService_idTab AS idTab ON (idTab.event_id = event_id)
+)

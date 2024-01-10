@@ -1,0 +1,3 @@
+VIEW VersionService_VersionInfo AS SELECT
+  VersionInfo_0.event_id
+FROM Version_VersionInfo AS VersionInfo_0

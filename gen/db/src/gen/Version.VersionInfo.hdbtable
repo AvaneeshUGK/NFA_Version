@@ -1,0 +1,4 @@
+COLUMN TABLE Version_VersionInfo (
+  event_id NVARCHAR(5000) NOT NULL,
+  PRIMARY KEY(event_id)
+)

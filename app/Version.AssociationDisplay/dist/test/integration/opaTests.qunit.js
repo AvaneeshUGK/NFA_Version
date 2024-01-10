@@ -1,0 +1,2 @@
+sap.ui.require(["sap/fe/test/JourneyRunner","Version/AssociationDisplay/test/integration/FirstJourney","Version/AssociationDisplay/test/integration/pages/idTabList","Version/AssociationDisplay/test/integration/pages/idTabObjectPage","Version/AssociationDisplay/test/integration/pages/EvtObjectPage"],function(i,e,s,t,n){"use strict";var i=new i({launchUrl:sap.ui.require.toUrl("Version/AssociationDisplay")+"/index.html"});i.run({pages:{onTheidTabList:s,onTheidTabObjectPage:t,onTheEvtObjectPage:n}},e.run)});
+//# sourceMappingURL=opaTests.qunit.js.map

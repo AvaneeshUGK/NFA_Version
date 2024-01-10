@@ -1,0 +1,12 @@
+VIEW VersionService_idTab AS SELECT
+  idTab_0.event_id,
+  idTab_0.Srcevtname,
+  idTab_0.Createdby,
+  idTab_0.Desc,
+  idTab_0.Version,
+  idTab_0.status,
+  idTab_0.criticality
+FROM Version_idTab AS idTab_0
+WITH ASSOCIATIONS (
+  MANY TO MANY JOIN VersionService_Evt AS verLink ON (event_id = verLink.event_id)
+)

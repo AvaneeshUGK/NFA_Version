@@ -1,0 +1,2 @@
+sap.ui.define(["sap/fe/test/ListReport"],function(e){"use strict";var s={actions:{},assertions:{}};return new e({appId:"Version.Version",componentId:"VersionList",entitySet:"Version"},s)});
+//# sourceMappingURL=VersionList.js.map
